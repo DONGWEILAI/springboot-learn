@@ -1,0 +1,15 @@
+base:
+  config:
+    name: dylan
+    port: 8080
+    applicationName: test
+    active: dylan-dev
+
+server:
+  port: ${base.config.port}
+
+spring:
+  profiles:
+    active: ${base.config.active}
+  application:
+    name: ${base.config.applicationName}
