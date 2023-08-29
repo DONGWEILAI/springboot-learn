@@ -1,6 +1,8 @@
 package com.dylan.mybatis.mapper.auth;
 
 import com.dylan.mybatis.entity.User;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -74,4 +77,18 @@ class UserMapperTest {
         System.out.println(userMapper.deleteUsersBatch(Arrays.asList("433", "111")));
     }
 
+    @Test
+    void pageHelperTest(){
+        PageHelper.startPage(2, 2);
+        List<User> allUsers = userMapper.getAllUsers();
+        if(Objects.nonNull(allUsers)){
+            PageInfo<User> pageInfo = new PageInfo<>(allUsers);
+            System.out.println(pageInfo);
+            System.out.println(pageInfo.getPages());
+            System.out.println(pageInfo.getNextPage());
+            System.out.println(pageInfo.getPrePage());
+            System.out.println(pageInfo.getSize());
+            // ...
+        }
+    }
 }

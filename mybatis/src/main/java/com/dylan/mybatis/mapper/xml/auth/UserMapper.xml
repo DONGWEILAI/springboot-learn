@@ -20,7 +20,7 @@
     <select id="getAllUsers" resultMap="user">
         select
         <include refid="baseColumn"/>
-        from tb_user;
+        from tb_user
     </select>
 
     <select id="getUserByKid" parameterType="string" resultMap="user">
